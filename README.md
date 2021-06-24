@@ -22,50 +22,62 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
+Load balancing ensures that the application will be highly stable, in addition to restricting access to the network.
 - _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+	A load balencer can protect against attacks like DDoS by redirecting unwanted traffic towards another server on a cloud.
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the systems metrics and system logs.
 - _TODO: What does Filebeat watch for?_
+	Filebeat can watch out for "event data" in specified logs by the user. It then fowards them to software like Kibana for indexing.
 - _TODO: What does Metricbeat record?_
+	Metricbeat can monitor system metrics and other runing services such as Apache or MySQL
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Name     | Function  | IP Address | Operating System |
+|----------|-----------|------------|------------------|
+| Jump-Box | Gateway   | 10.0.0.4   | Linux            |
+| Web-1    | Container | 10.0.0.8   | Linux            |
+| Web-2    | Container | 10.0.0.6   | Linux            |
+| T-800    | ELK       | 10.2.0.4   | Linux            |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet.
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the Jump-Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+	I currenly have the IP Address 72.220.3.92 whitelisted so I may ssh into the Jump Box Machine	 
 
-Machines within the network can only be accessed by _____.
+Machines within the network can only be accessed by users with the right ssh key.
 - _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
-
+	My Jumpbox Machine. IP Address (52.250.23.216 | 10.0.0.4)
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Name     | Publicly Accessible | Allowed IP Addresses | Operating System |
+|----------|---------------------|----------------------|------------------|
+| Jump-Box | yes                 | 72.220.3.92          | Linux            |
+| Web-1    | no                  | 10.0.0.4             | Linux            |
+| Web-2    | no                  | 10.0.0.4             | Linux            |
+| T-800    | no                  | 52.250.23.216        | Linux            |
 
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
 - _TODO: What is the main advantage of automating configuration with Ansible?_
-
+	Why type a thousand keys when a 15 letter name for a script could deploy everything for you? The automation process would make repeating tasks go a lot more smoother 
 The playbook implements the following tasks:
 - _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+	*install docker.io, pip3, and the Docker Python Module
+	*Configure a VM to use more memory by setting the vm.max_map_count to 262144
+	*Downloads and installs the Docker container called sebp/elk:761
+		-make sure the docker container start with these port mappings
+			--5601:5601
+			--9200:9200
+			--5044:5044
+	*Start the Container
+	*Enable the Docker service on boot
+ 
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
