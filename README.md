@@ -3,7 +3,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![https://raw.githubusercontent.com/kasaneteddo/UCSD_Bootcamp/blob/main/Diagrams/NetworkSecurity%20Diagram.png](Github/UCSD_Bootcamp/Diagrams/NetworkSecurityDiagram.png)
+![https://raw.githubusercontent.com/kasaneteddo/UCSD_Bootcamp/blob/main/Diagrams/NetworkSecurityDiagram.png](Github/UCSD_Bootcamp/Diagrams/NetworkSecurityDiagram.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
 
